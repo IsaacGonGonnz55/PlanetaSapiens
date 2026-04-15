@@ -7,7 +7,10 @@ class Usuario(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
 
     persona_id = db.Column(db.Integer, db.ForeignKey("personas.id"), nullable=False)
+
+    username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
+
     password_hash = db.Column(db.String(255), nullable=False)
 
     tipo_usuario_id = db.Column(db.Integer, db.ForeignKey("tipos_usuario.id"))
@@ -19,3 +22,7 @@ class Usuario(BaseModel):
     sesiones = db.relationship("Sesion", back_populates="usuario")
 
     tipo_usuario = db.relationship("TipoUsuario", backref="usuarios")
+
+    __table_args__ = (
+        db.Index('idx_usuario_login', 'username', 'email'),
+    )
