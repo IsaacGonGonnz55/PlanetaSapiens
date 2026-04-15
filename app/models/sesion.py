@@ -9,13 +9,16 @@ class Sesion(BaseModel):
 
     usuario_id = db.Column(db.Integer, db.ForeignKey("usuarios.id"), nullable=True)
 
-    token = db.Column(db.String(255), nullable=False)
+    session_token = db.Column(db.String(36), unique=True)
+
     ip_address = db.Column(db.String(45))
     user_agent = db.Column(db.String(255))
 
-    fecha_inicio = db.Column(db.DateTime, default=datetime.utcnow)
+    es_autenticado = db.Column(db.Boolean, default=False)
+
+    payload = db.Column(db.JSON, nullable=True)  # 🔥 NUEVO
+
+    fecha_inicio = db.Column(db.DateTime)
     fecha_fin = db.Column(db.DateTime)
 
     activa = db.Column(db.Boolean, default=True)
-
-    usuario = db.relationship("Usuario", back_populates="sesiones")
