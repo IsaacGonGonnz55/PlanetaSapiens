@@ -1,12 +1,18 @@
-from flask import Flask
+from app import create_app
+from app.extensions.db import db
+from sqlalchemy import text
 
-app = Flask(__name__)
+app = create_app()
+
+@app.route("/")
+def test_db():
+    try:
+        result = db.session.execute(text("SELECT 1"))
+        return f"Conexión exitosa: {list(result)}"
+    except Exception as e:
+        return f"Error de conexión: {str(e)}"
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
+if __name__ == "__main__":
+    app.run(debug=True)
 
-
-if __name__ == '__main__':
-    app.run()
