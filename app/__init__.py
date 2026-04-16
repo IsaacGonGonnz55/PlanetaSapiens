@@ -13,4 +13,19 @@ def create_app():
 
     from app import models
 
+    from app.modules.main import main_bp
+    from app.modules.auth import auth_bp
+
+    app.register_blueprint(main_bp)
+    app.register_blueprint(auth_bp)
+
+    from datetime import datetime
+
+    @app.context_processor
+    def inject_global_variables():
+        return {
+            "current_year": datetime.utcnow().year
+        }
+
+
     return app
