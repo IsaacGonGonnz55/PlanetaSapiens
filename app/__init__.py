@@ -1,6 +1,8 @@
 from flask import Flask
 from app.extensions.db import db
 from app.extensions.migrate import migrate
+import click
+from app.modules.auth.services.seed_service import seed_all
 
 def create_app():
     app = Flask(__name__)
@@ -26,6 +28,12 @@ def create_app():
         return {
             "current_year": datetime.utcnow().year
         }
+    
+        # 🔥 COMANDO CLI AQUÍ
+    @app.cli.command("seed")
+    def seed():
+        """Inicializa datos del sistema"""
+        seed_all()
 
 
     return app
