@@ -11,4 +11,5 @@ def seed_all():
     asignar_permisos()
     crear_super_admin()
 
-    print("Sistema inicializado correctamente")
+    print("Sistema inicializado correctamente") 
+    
