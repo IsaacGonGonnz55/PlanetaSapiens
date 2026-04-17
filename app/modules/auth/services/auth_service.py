@@ -1,5 +1,5 @@
 from app.models.usuario import Usuario
-
+from sqlalchemy import or_
 
 def login_user(identifier, password):
     user = Usuario.query.filter(
@@ -14,3 +14,17 @@ def login_user(identifier, password):
         return None
 
     return user
+
+
+def autenticar_usuario(identifier, password):
+    user = Usuario.query.filter(
+        or_(
+            Usuario.username == identifier,
+            Usuario.email == identifier
+        )
+    ).first()
+
+    if user and user.check_password(password) and user.activo:
+        return user
+
+    return None

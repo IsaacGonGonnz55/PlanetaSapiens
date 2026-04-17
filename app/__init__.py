@@ -3,6 +3,8 @@ from app.extensions.db import db
 from app.extensions.migrate import migrate
 import click
 from app.modules.auth.services.seed_service import seed_all
+from app.extensions.login_manager import login_manager
+from app.models.usuario import Usuario
 
 def create_app():
     app = Flask(__name__)
@@ -12,6 +14,9 @@ def create_app():
 
     db.init_app(app)
     migrate.init_app(app, db)
+    login_manager.init_app(app)
+
+    
 
     from app import models
 
@@ -34,6 +39,13 @@ def create_app():
     def seed():
         """Inicializa datos del sistema"""
         seed_all()
+
+   
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return Usuario.query.get(int(user_id))
+        
 
 
     return app
