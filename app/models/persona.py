@@ -10,4 +10,5 @@ class Persona(BaseModel):
     apellido_materno = db.Column(db.String(100), nullable=False)
 
     usuario = db.relationship("Usuario", back_populates="persona", uselist=False)
+    
 
