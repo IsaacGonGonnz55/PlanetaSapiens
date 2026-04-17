@@ -33,3 +33,4 @@ def crear_super_admin():
     db.session.commit()
 
     print("Super admin creado")
+    
