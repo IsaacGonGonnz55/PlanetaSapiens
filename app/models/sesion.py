@@ -16,7 +16,7 @@ class Sesion(BaseModel):
 
     es_autenticado = db.Column(db.Boolean, default=False)
 
-    payload = db.Column(db.JSON, nullable=True)  # 🔥 NUEVO
+    payload = db.Column(db.JSON, nullable=True)  
 
     fecha_inicio = db.Column(db.DateTime)
     fecha_fin = db.Column(db.DateTime)
