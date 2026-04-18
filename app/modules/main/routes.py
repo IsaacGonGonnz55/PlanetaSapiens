@@ -19,7 +19,7 @@ def servicios():
     return render_template("public/main/servicios.html")
 
 
-# 🔒 PRIVADO
+
 @main_bp.route("/dashboard")
 @login_required
 def dashboard():
