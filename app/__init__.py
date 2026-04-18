@@ -16,7 +16,7 @@ def create_app():
     migrate.init_app(app, db)
     login_manager.init_app(app)
 
-    
+
 
     from app import models
 
@@ -27,11 +27,10 @@ def create_app():
     app.register_blueprint(auth_bp)
 
     from datetime import datetime
-
     @app.context_processor
-    def inject_global_variables():
+    def inject_globals():
         return {
-            "current_year": datetime.utcnow().year
+            'current_year': datetime.now().year
         }
     
         # 🔥 COMANDO CLI AQUÍ
