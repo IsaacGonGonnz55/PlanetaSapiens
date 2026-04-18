@@ -4,7 +4,7 @@ from . import auth_bp
 from app.modules.auth.services.auth_service import autenticar_usuario
 
 
-# 🔐 LOGIN
+
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
