@@ -1,0 +1,9 @@
+<nav>
+    <a href="{{ url_for('main.dashboard') }}">Inicio</a>
+    <a href="#">Cursos</a>
+    <a href="#">Foro</a>
+
+    <span>{{ current_user.username }}</span>
+
+    <a href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
+</nav>
