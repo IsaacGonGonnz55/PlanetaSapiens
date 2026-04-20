@@ -1,10 +1,13 @@
-from flask import Flask
+from flask import Flask, request, redirect, url_for
 from app.extensions.db import db
 from app.extensions.migrate import migrate
 import click
 from app.modules.auth.services.seed_service import seed_all
 from app.extensions.login_manager import login_manager
 from app.models.usuario import Usuario
+from flask_login import current_user
+from app.modules.auth.services.session_service import crear_sesion_anonima
+
 
 def create_app():
     app = Flask(__name__)
@@ -15,8 +18,6 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     login_manager.init_app(app)
-
-
 
     from app import models
 
@@ -39,12 +40,27 @@ def create_app():
         """Inicializa datos del sistema"""
         seed_all()
 
-   
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return Usuario.query.get(int(user_id))
+    @app.before_request
+    def before_request_global():
+
         
+        if request.endpoint != "static":
+            crear_sesion_anonima()
+
+        # 🔹 2. Proteger rutas
+        rutas_publicas = [
+            "main.home",
+            "main.acerca",
+            "main.servicios",
+            "auth.login",
+            "auth.register",
+            "static"
+        ]
+
+        if request.endpoint not in rutas_publicas:
+            if not current_user.is_authenticated:
+                return redirect(url_for("auth.login"))             
 
 
     return app
