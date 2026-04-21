@@ -1,7 +1,40 @@
 {% extends 'layouts/public_base.html' %}
 
-{% block title %}Inicio{% endblock %}
-
 {% block content %}
-<h1>Bienvenido a PlanetaSapiens </h1>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Educación ambiental</h1>
+        <p>Aprende, mide y mejora tu impacto en el planeta</p>
+        <a href="{{ url_for('auth.register') }}" class="btn">Comenzar</a>
+    </div>
+</section>
+
+<div class="container fade-in">
+
+    <section class="section">
+        <h2 class="section-title">¿Qué puedes hacer?</h2>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Cursos</h3>
+                <p>Aprende sobre sostenibilidad</p>
+            </div>
+
+            <div class="card">
+                <h3>Calculadora CO2</h3>
+                <p>Mide tu impacto ambiental</p>
+            </div>
+
+            <div class="card">
+                <h3>Eventos</h3>
+                <p>Participa en actividades ecológicas</p>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
 {% endblock %}

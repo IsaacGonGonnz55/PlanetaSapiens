@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Dashboard — PlanetaSapiens{% endblock %}</title>
-</head>
 <body>
 
-{% include "components/private/navbar.html" %}
+<header>
+    {% include "components/private/navbar.html" %}
+</header>
 
-{% block content %}{% endblock %}
+<main>
+    {% block content %}{% endblock %}
+</main>
 
-{% include "components/footer.html" %}
+<footer>
+    {% include "components/footer.html" %}
+</footer>
 
 </body>
-</html>
