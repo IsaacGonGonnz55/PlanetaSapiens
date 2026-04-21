@@ -39,7 +39,7 @@ def crear_super_admin():
         tipo_usuario=rol
     )
 
-    user.set_password("93Wag826-#)c")
+    user.set_password(os.getenv("DEFAULT_ADMIN_PASSWORD"))
 
     db.session.add(user)
     db.session.commit()
