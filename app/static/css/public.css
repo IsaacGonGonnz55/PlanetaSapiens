@@ -1,0 +1,165 @@
+/* ========================= */
+/* NAVBAR BASE */
+/* ========================= */
+
+.navbar-public {
+    background: white;
+    border-bottom: 1px solid #eee;
+    padding: 15px 20px;
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar-public .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* LOGO */
+.navbar-public .logo {
+    font-weight: bold;
+    color: var(--color-primary);
+    font-size: 20px;
+}
+
+/* ========================= */
+/* MENU HAMBURGUESA */
+/* ========================= */
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--color-primary);
+    transition: 0.3s;
+}
+
+/* ANIMACIÓN A X */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+}
+
+/* ========================= */
+/* LINKS MOBILE */
+/* ========================= */
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    list-style: none;
+
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+
+    background: white;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+
+    /* ANIMACIÓN */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.nav-links.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.nav-links a {
+    color: #333;
+}
+
+/* ========================= */
+/* AUTH MOBILE */
+/* ========================= */
+
+.nav-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.nav-auth.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.nav-auth a {
+    color: var(--color-primary);
+}
+
+.nav-auth .btn {
+    background: var(--color-primary);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+/* ========================= */
+/* TABLET / DESKTOP */
+/* ========================= */
+
+@media (min-width: 768px) {
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav-links {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+
+        flex-direction: row;
+        position: static;
+        width: auto;
+        padding: 0;
+        gap: 30px;
+    }
+
+    .nav-auth {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+
+        flex-direction: row;
+        align-items: center;
+        margin-top: 0;
+    }
+
+    .nav-auth a {
+        margin-left: 15px;
+    }
+
+    .navbar-public {
+        padding: 15px 40px;
+    }
+}

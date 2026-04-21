@@ -1,0 +1,16 @@
+.navbar-private {
+    background: #1B5E20;
+    color: white;
+    padding: 15px 30px;
+}
+
+.navbar-private .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-private a {
+    color: #A5D6A7;
+    margin-left: 15px;
+}
