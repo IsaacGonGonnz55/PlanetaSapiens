@@ -28,3 +28,14 @@ def autenticar_usuario(identifier, password):
         return user
 
     return None
+
+
+def obtener_redirect_por_rol(user):
+    rol = user.tipo_usuario.nombre
+
+    if rol == "ADMIN":
+        return "main.dashboard"
+    elif rol == "MODERADOR":
+        return "main.dashboard"
+    else:
+        return "main.home"    
