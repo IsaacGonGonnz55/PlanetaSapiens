@@ -4,33 +4,38 @@ from app.models.tipo_usuario import TipoUsuario
 from app.models.persona import Persona
 
 
-def crear_super_admin():
-    if Usuario.query.filter_by(es_superadmin=True).first():
-        print("⚠️ Ya existe un super admin")
-        return
+def crear_usuario(username, email, password):
 
-    rol = TipoUsuario.query.filter_by(nombre="SUPER_ADMIN").first()
+    if Usuario.query.filter(
+        (Usuario.username == username) |
+        (Usuario.email == email)
+    ).first():
+        return None
+
+    tipo = TipoUsuario.query.filter_by(nombre="USUARIO").first()
+
+    if not tipo:
+        return None
 
     persona = Persona(
-        nombre="Super",
-        apellido_paterno="Admin",
-        apellido_materno="Sistema"
+        nombre=username,
+        apellido_paterno="",
+        apellido_materno=""
     )
+
     db.session.add(persona)
     db.session.flush()
 
     user = Usuario(
+        username=username,
+        email=email,
         persona_id=persona.id,
-        username="superadmin",
-        email="admin@planetasapiens.com",
-        es_superadmin=True,
-        tipo_usuario=rol
+        tipo_usuario_id=tipo.id
     )
 
-    user.set_password("Admin123*")
+    user.set_password(password)
 
     db.session.add(user)
     db.session.commit()
 
-    print("Super admin creado")
-    
+    return user
