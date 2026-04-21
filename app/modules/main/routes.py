@@ -4,6 +4,7 @@ from . import main_bp
 from app.utils.decorators import requiere_permiso  # 🔥 IMPORT CLAVE
 
 
+
 @main_bp.route("/")
 def home():
     return render_template("public/main/home.html")
