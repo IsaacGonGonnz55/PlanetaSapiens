@@ -1,0 +1,70 @@
+# =========================
+# Variables de entorno
+# =========================
+.env
+.env.*
+*.env
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+venv/
+env/
+ENV/
+.venv/
+
+# Archivos de instalación
+*.egg-info/
+dist/
+build/
+
+# =========================
+# Flask / App
+# =========================
+instance/
+*.sqlite3
+*.db
+
+# =========================
+# Testing / Coverage
+# =========================
+.coverage
+htmlcov/
+.pytest_cache/
+
+# =========================
+# IDEs / Editores
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# macOS
+# =========================
+.DS_Store
+
+# =========================
+# Frontend (si usas JS / Flutter web)
+# =========================
+node_modules/
+dist/
+build/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Seguridad
+# =========================
+*.pem
+*.key
+*.crt
